@@ -7,10 +7,10 @@ class EnumBool : public QObject
 public:
     enum WidgetAttribute
     {
-        A = 0,
-        B = 1,
-        C = 2,
-        D = 33
+        A = 0x00000000,
+        B = 0x00000001,
+        C = 0x00000002,
+        D = 0x00000004
     };
     Q_ENUM(WidgetAttribute)
 
