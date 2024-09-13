@@ -43,7 +43,7 @@ template <class T>
 void moveListKeepOrder(QList<T> &srcList, const QList<T> &moveList, int toIndex)
 {
     int fromIndex = srcList.indexOf(moveList.first());
-    if (fromIndex == toIndex)   // 第一个值若一样，无需移动
+    if (fromIndex == toIndex)
         return;
     if (fromIndex > toIndex)    // 向前移动
     {
@@ -51,19 +51,20 @@ void moveListKeepOrder(QList<T> &srcList, const QList<T> &moveList, int toIndex)
         {
             T value = moveList[index];
             int indexInList = srcList.indexOf(value);
-            srcList.move(indexInList, toIndex);
+            if (indexInList >= 0)
+                srcList.move(indexInList, toIndex);
         }
     }
     else
     {
-        if (moveList.last() == srcList.last())     // 向后移动，最后一个值若一样，无需移动
+        if (moveList.last() == srcList.last())		// 向后移动，最后一个值若一样，无需移动
             return;
         for (int index = 0; index < moveList.count(); index++)
         {
             T value = moveList[index];
             int indexInList = srcList.indexOf(value);
-            srcList.move(indexInList, moveList.count() - 1 + toIndex);
-            qDebug() << "From" << indexInList << "toIndex" << moveList.count() - 1 + toIndex << ":" << srcList;
+            if (indexInList >= 0)
+                srcList.move(indexInList, moveList.count() - 1 + toIndex);
         }
     }
 }
