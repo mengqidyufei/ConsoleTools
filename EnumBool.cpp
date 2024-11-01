@@ -7,8 +7,12 @@ EnumBool::EnumBool()
 {
     qDebug() << "Maximum value:" << int(8*sizeof(uint));
     setAttribute(EnumBool::B, true);
-    setAttribute(EnumBool::C, true);
+    setAttribute(EnumBool::E, true);
     qDebug() << "Attribute:" << mAttribute;
+    if (mAttribute & E)
+    {
+        qDebug() << mAttribute << "&" << E << ":" << (mAttribute & E);
+    }
 }
 
 void EnumBool::setAttribute(int attribute, bool on)

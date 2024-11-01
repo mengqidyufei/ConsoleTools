@@ -64,16 +64,16 @@ void moveListKeepOrder(QList<T> &srcList, const QList<T> &moveList, int toIndex)
             T value = moveList[index];
             int indexInList = srcList.indexOf(value);
             if (indexInList >= 0)
-                srcList.move(indexInList, moveList.count() - 1 + toIndex);
+                srcList.move(indexInList, qMin(srcList.count() - 1, moveList.count() - 1 + toIndex));
         }
     }
 }
 
 SortItemList::SortItemList()
 {
-    QList<QString> sortList = {"110", "240", "940", "480", "e00"};
+    QList<QString> sortList = {"1", "2", "21"};
     //QList<QString> sortList = {"240", "940", "480", "e00"};
-    QList<QString> moveList = {"240", "940", "480"};
+    QList<QString> moveList = {"1", "2"};
     moveListKeepOrder<QString>(sortList, moveList, 2);
     qDebug() << sortList;
 
